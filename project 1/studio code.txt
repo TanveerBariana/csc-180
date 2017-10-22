@@ -1,0 +1,183 @@
+//buy x = attempt to buy x
+/
+if(CT){
+    if(r15 || wonLastRound){
+        if(no A){
+            buy A
+        }
+        if(no D){
+            buy D
+        }
+        if(no R){
+            buy R
+        }
+        if(no (R||P)){
+            buy P
+        } 
+        buy smoke
+        buy flash
+        buy fire
+        buy flash
+    }
+	-----------------------------------------------------------
+	(defrule FullBuy1
+		(fullbuyBreak both1)
+		(Arm no)
+		=>
+		(print t "buy armor" crlf)
+		(print t "do you have D")
+		(assert (D (read)))
+		(retract Arm)
+	)
+	(defrule FullBuy1
+		(fullbuyBreak both1)
+		(D no)
+		=>
+		(print t "buy D" crlf)
+		(print t "do you have a rifle")
+		(assert (rif (read)))
+		(retract D)
+	)
+	(defrule FullBuy1
+		(fullbuyBreak both1)
+		(rif no)
+		=>
+		(print t "can you afford a rifle" crlf)
+		(assert (rbuy (read)))
+		(retract rif)
+	)
+	(defrule FullBuy1
+		(fullbuyBreak both1)
+		(rbuy yes)
+		=>
+		(print t "buy rifle" crlf)
+		(retract fullbuyBreak)
+		(assert (fullbuyBreak both2))
+		(retract rbuy)
+	)
+	(defrule FullBuy1
+		(fullbuyBreak both1)
+		(rbuy no)
+		=>
+		(print t "do you have a pistol" crlf)
+		(assert (pbuy (read)))
+		(retract rbuy)
+	)
+	(defrule FullBuy1
+		(fullbuyBreak both1)
+		(pbuy no)
+		=>
+		(print t "buy a pistol" crlf)
+		(retract fullbuyBreak)
+		(assert (fullbuyBreak both2))
+		(retract pbuy)
+	)
+	(defrule FullBuy2
+		(fullbuyBreak both2)
+		=>
+		(printout t "buy smoke, flash, fire, flash in that order as far as you can")
+		(retract fullbuyBreak)
+		(assert (pass4 yes))
+	)
+	------------------------------------------------------------
+    if(r1){
+        buy D
+        buy smoke
+    }
+    if(!wonLastRound){
+        if(*2){
+            buy A
+            buy R
+            buy smoke
+            buy D
+            buy flash
+            buy fire
+            buy flash
+        }elif(r2 || !CEB2){
+            buy A
+            buy P
+            buy smoke
+            buy flash
+            buy fire
+            buy flash
+        }elif((money - P.cost) >= 1000){
+            buy P
+        }
+    }
+}elif{
+    if(r15 || wonLastRound){
+        if(no A){
+            buy A
+        }
+        if(no R){
+            buy R
+        }
+        if(no (R||P)){
+            buy P
+        } 
+        buy smoke
+        buy flash
+        buy fire
+        buy flash
+    }
+    if(r1){
+        buy HA
+    }
+    if(!wonLastRound){
+        if(*3){
+            buy A
+            buy R
+            buy smoke
+            buy flash
+            buy fire
+            buy flash
+        }elif(r2 || !CEB2){
+            buy A
+            buy P
+            buy smoke
+            buy flash
+            buy fire
+            buy flash
+        }elif((money - P.cost) >= 1000){
+            buy P
+        }
+    } 
+}
+
+
+
+
+
+//*2 determine if you have enough money to do full buy on CT side
+*2
+cnt= 0
+for(each person){
+    if(person.money < 1000){
+        return FALSE
+    }
+}
+for(each person){
+    temp_monet= person.money- 1000
+    cnt+= temp_monet/3100
+}
+if(cnt >= 5){
+    return TRUE
+}
+return FALSE
+
+//same but for T
+*3
+cnt= 0
+for(each person){
+    if(person.money < 1000){
+        return FALSE
+    }
+}
+for(each person){
+    temp_monet= person.money- 1000
+    cnt+= temp_monet/2700
+}
+if(cnt >= 5){
+    return TRUE
+}
+return FALSE

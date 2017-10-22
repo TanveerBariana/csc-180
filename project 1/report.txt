@@ -1,0 +1,87 @@
+CSGo expert system
+
+Tanveer Bariana
+XAVIER LAMPHERE
+
+CSc-180
+Fall 2017
+Project 1 - EXPERT SYSTEMS / FUZZY LOGIC
+
+----------------------------------------------
+
+Introduction and Background
+
+    -  short overview of the project
+	we have designed an expert system to assist in the descion making proccess that many players 
+	of Counter Strike face at the start of a round. We prompt the user repeatedly to determine 
+	important factors such as round number and equipment. We hope to make the start of rounds go 
+	by much faster by educating the user on the proper steps to take given their current situation.
+   
+   -  describe the motivation and/or problem you are trying to solve
+	
+
+Knowledge Engineering
+
+    -  describe your expert, being as specific as possible
+    -  describe the knowledge engineering you did to obtain his/her knowledge
+    -  did you make any simplifications?  did you constrain the application?
+
+Expert System Design
+
+    -  describe how you organized the knowledge obtained from the expert
+    -  give an overview of the rules, facts, inputs, and outputs
+    -  thoroughly explain where and how fuzzy logic was utilized
+         (include thorough definitions of the fuzzy sets and fuzzy values)
+    -  show some sample scenarios illustrating your program in action.
+
+Conclusion
+
+    -  how well did your approach work?  Does your system give good answers?
+    -  any known bugs or unresolved issues?
+    -  any limitations?  Any situations where your system can't be relied
+        upon to give the right advice?
+
+APPENDIX A (installation guide)
+
+	
+    -  how to install and run your program.
+	
+	we are assuming you are running this on windows, Mac support documentaion will arise 
+	as we gain expeirence in it.
+	The prerequisites for running our program is to have CLIPSwin.exe on your computer. 
+	1. download and run CLIPSwin.exe from wherever it is on your machine 
+	2. locate where CounterStrikeStartOfRound.CLP is on your computer for later use
+	3. open CLIPSwin.exe
+	4. type and run the (clear) command in the terminal 
+	5. click the file Tab
+	6. click on "Load Constructs" 
+	7. locate CounterStrikeStartOfRound.CLP in the window that opens up
+	8. open CounterStrikeStartOfRound.CLP
+	9. in the CLIPSwin.exe terminal run the (reset) command
+	10. in the terminal run the (run) command
+	
+APPENDIX B (user's guide)
+
+    -  explain how the user enters their data, and how to interpret the output.
+	1. you will be propmted for variouse answers
+		-your answer should be either be "yes" or "no", without quotes, if there is no clear answer in the question
+		ex> (is it round 15) would be yes or no
+		ex> (are you CT or T) would be CT or T
+	2. after you reach the end where the expert system gives you advice you 
+	must run the (reset) command before running it again
+		- the advice usually comes in the form of a message "buy <item you need to buy>"
+		- it may vary in wording but should be pretty similar
+References
+
+    -  the expert (if they allow you to mention them by name,
+         otherwise describe the expert(s) and their background).
+	Andres Castenada (expert)
+		- has and estimated 7000 recorded hours playing CounterStrike and 
+		and an aditional 5000 unrecorded hours 
+		- he played one step just below teh semi-professional level
+		for a majority of that time.
+	
+    -  cite any other sources you utilized during the project
+         (webpages, books, etc.).  Use proper citation and
+         bibliography style... if you don't know how to do that,
+         ask your instructor.
