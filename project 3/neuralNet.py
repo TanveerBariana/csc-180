@@ -23,4 +23,4 @@ network = fully_connected(network, 2, activation='softmax')
 network = regression(network, optimizer='momentum',
 	loss='categorical_crossentropy',
 	learning_rate=0.001, metric=acc)
-model = tflearn.DNN(network)
+model = tflearn.DNN(network, k, tensorboard_verbose=3, tensorboard_dir="logs")
