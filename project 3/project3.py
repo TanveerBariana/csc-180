@@ -16,19 +16,21 @@ from __future__ import division, print_function, absolute_import
 
 import tflearn
 import scipy
-import numpy
+import numpy as nm
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.estimator import regression
 from tflearn.data_utils import image_preloader
+from tflearn.metrics import Accuracy
+acc = Accuracy()
 # Data loading and preprocessing
 # tflearn.datasets.mnist as mnist
 #X, Y, testX, testY = mnist.load_data(one_hot=True)
 X , Y = image_preloader(target_path='C:\\Users\\tanve\\Desktop\\csc180\\project 3\\train', image_shape=(100, 100), mode='folder', grayscale=False, categorical_labels=True, normalize=True)
-X = X.reshape([-1, 100, 100, 3])
+X = nm.reshape(X, (-1, 100, 100, 3))
 W, Z = image_preloader(target_path='C:\\Users\\tanve\\Desktop\\csc180\\project 3\\test', image_shape=(100, 100), mode='folder', grayscale=False, categorical_labels=True, normalize=True)
-testX = testX.reshape([-1, 100, 100, 3])
+W = nm.reshape(W,(-1, 100, 100, 3))
 
 # Building convolutional network
 network = input_data(shape=[None, 100, 100, 3], name='input')
@@ -49,6 +51,6 @@ network = regression(network, optimizer='momentum', learning_rate=0.01,
 # Training
 model = tflearn.DNN(network, tensorboard_verbose=0)
 model.fit({'input': X}, {'target': Y}, n_epoch=20,
-           validation_set=({'input': testX}, {'target': testY}),
-           snapshot_step=100, show_metric=True, run_id='convnet_mnist', metric= acc)
+           validation_set=({'input': W}, {'target': Z}),
+           snapshot_step=100, show_metric=True, run_id='convnet_mnist')
 
